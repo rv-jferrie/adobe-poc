@@ -18,6 +18,8 @@
   --text-color: #131313;
   --link-color: #3b63fb;
   --link-hover-color: #1d3ecf;
+  --brand-color: #225a04;
+  --secondary-color: #8a6d04;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
@@ -171,7 +173,7 @@ button {
   box-sizing: border-box;
   display: inline-block;
   max-width: 100%;
-  margin: 12px 0;
+  /* margin: 12px 0; */
   border: 2px solid transparent;
   border-radius: 2.4em;
   padding: 0.5em 1.2em;
@@ -210,7 +212,7 @@ button.secondary {
   color: var(--text-color);
 }
 
-main img {
+/* main img {
   max-width: 100%;
   width: auto;
   height: auto;
@@ -225,33 +227,45 @@ main img {
 .icon img {
   height: 100%;
   width: 100%;
+} */
+
+main > .section, .navbar, footer .section {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    padding-left: 7.5px;
+    padding-right: 7.5px;
 }
 
-/* sections */
-main > .section {
-  margin: 40px 0;
+@media (max-width: 767.98px) {
+    main > .section, .navbar, footer .section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }
 
-main > .section > div {
-  max-width: 1200px;
-  margin: auto;
-  padding: 0 24px;
+@media (min-width: 768px) {
+    main > .section, .navbar, footer .section {
+        max-width: 720px;
+    }
 }
 
-main > .section:first-of-type {
-  margin-top: 0;
+@media (min-width: 992px) {
+    main > .section, .navbar, footer .section {
+        max-width: 992px;
+    }
 }
 
-@media (width >= 900px) {
-  main > .section > div {
-    padding: 0 32px;
-  }
+@media (min-width: 1200px) {
+    main > .section, .navbar, footer .section {
+        max-width: 1180px;
+    }
 }
 
-/* section metadata */
-main .section.light,
-main .section.highlight {
-  background-color: var(--light-color);
-  margin: 0;
-  padding: 40px 0;
+@media (min-width: 1440px) {
+    main > .section, .navbar, footer .section {
+        max-width: 1400px;
+        padding-left: 23px;
+        padding-right: 23px;
+    }
 }
