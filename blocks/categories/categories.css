@@ -50,7 +50,7 @@
 }
 
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
     .categories ul {
         display: flex;
         justify-content: space-between;
