@@ -17,6 +17,9 @@ export default async function decorate(block) {
   footer.classList.add('footer-links');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
+  const disclosuresResp = await fetch('/disclosures.json');
+  const disclosuresData = await disclosuresResp.json();
+
   const disclosuresMeta = getMetadata('fragments/disclosures');
   const disclosuresPath = disclosuresMeta ? new URL(disclosuresMeta, window.location).pathname : '/fragments/disclosures';
   const disclosuresFragment = await loadFragment(disclosuresPath);
@@ -26,6 +29,12 @@ export default async function decorate(block) {
   while (disclosuresFragment.firstElementChild) {
     disclosures.append(disclosuresFragment.firstElementChild);
   }
+
+  disclosures.querySelectorAll('li').forEach((li) => {
+    const [id, sub_id] = li.textContent.split('_');
+    const { disclosure } = disclosuresData.data.find((d) => d.id === id && d.sub_id === sub_id);
+    li.textContent = disclosure;
+  });
 
   block.append(disclosures, footer);
 }
