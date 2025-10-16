@@ -18,18 +18,16 @@ footer {
     font-size: 14px;
 }
 
-@media (max-width: 575px) {
+@media (width <= 575px) {
     .footer ul {
-        columns:2;
-        -webkit-columns: 2;
-        -moz-columns: 2;
+        columns: 2;
         column-gap: 3rem;
         font-size: 14px;
     }
 }
 
-@media (min-width: 576px) {
-    .footer ul li:after {
+@media (width >= 576px) {
+    .footer ul li::after {
       content:" | ";
       margin: 0 15px;
     }
@@ -39,7 +37,7 @@ footer {
     padding-bottom: 10px;
 }
 
-.footer ul li:last-child:after {
+.footer ul li:last-child::after {
     content: none;
     margin: 0;
 }
@@ -49,14 +47,14 @@ footer {
     padding-bottom: 10px;
 }
 
-@media (min-width: 1200px) {
-    .footer ul li:nth-child(5):after {
+@media (width >= 1200px) {
+    .footer ul li:nth-child(5)::after {
       content: "";
       margin: 0 15px;
     }
   }
 
-@media (max-width: 575px) {
+@media (width <= 575px) {
     .footer ul li.list-inline-item {
       min-width:50%;
     }

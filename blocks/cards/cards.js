@@ -13,20 +13,19 @@ export default function decorate(block) {
       else if (index === 2) {
         div.className = 'card-links';
         const links = div.querySelectorAll('a');
-        links.forEach((link, index) => {
-            switch (index) {
-                case 1:
-                    link.className = 'button';
-                    break;
-                case 2:
-                    link.className = 'button secondary';
-                    break;
-                default:
-                    break;
-            }
-        })
-      }
-      else div.className = 'card-extra';
+        links.forEach((link, idx) => {
+          switch (idx) {
+            case 1:
+              link.className = 'button';
+              break;
+            case 2:
+              link.className = 'button secondary';
+              break;
+            default:
+              break;
+          }
+        });
+      } else div.className = 'card-extra';
     });
 
     ul.append(li);
