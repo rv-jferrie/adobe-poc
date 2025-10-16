@@ -14,7 +14,18 @@ export default async function decorate(block) {
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
+  footer.classList.add('footer-links');
   while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
 
-  block.append(footer);
+  const disclosuresMeta = getMetadata('fragments/disclosures');
+  const disclosuresPath = disclosuresMeta ? new URL(disclosuresMeta, window.location).pathname : '/fragments/disclosures';
+  const disclosuresFragment = await loadFragment(disclosuresPath);
+
+  const disclosures = document.createElement('div');
+  disclosures.classList.add('disclosures');
+  while (disclosuresFragment.firstElementChild) {
+    disclosures.append(disclosuresFragment.firstElementChild);
+  }
+
+  block.append(disclosures, footer);
 }
