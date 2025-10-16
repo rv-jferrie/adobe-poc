@@ -13,7 +13,7 @@
 :root {
   /* colors */
   --background-color: white;
-  --light-color: #f8f8f8;
+  --light-color: #ccc;
   --dark-color: #505050;
   --text-color: #131313;
   --link-color: #3b63fb;
@@ -86,9 +86,9 @@ body.appear {
   display: block;
 }
 
-header {
+/* header {
   height: var(--nav-height);
-}
+} */
 
 header .header,
 footer .footer {
@@ -229,7 +229,13 @@ button.secondary {
   width: 100%;
 } */
 
-main > .section, .navbar, footer .section {
+img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+
+main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
     margin-right: auto;
     margin-left: auto;
     width: 100%;
@@ -238,32 +244,32 @@ main > .section, .navbar, footer .section {
 }
 
 @media (max-width: 767.98px) {
-    main > .section, .navbar, footer .section {
+    main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
         padding-left: 15px;
         padding-right: 15px;
     }
 }
 
 @media (min-width: 768px) {
-    main > .section, .navbar, footer .section {
+    main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
         max-width: 720px;
     }
 }
 
 @media (min-width: 992px) {
-    main > .section, .navbar, footer .section {
+    main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
         max-width: 992px;
     }
 }
 
 @media (min-width: 1200px) {
-    main > .section, .navbar, footer .section {
+    main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
         max-width: 1180px;
     }
 }
 
 @media (min-width: 1440px) {
-    main > .section, .navbar, footer .section {
+    main > .section, .navbar, .primary-nav, .breadcrumbs, footer .section {
         max-width: 1400px;
         padding-left: 23px;
         padding-right: 23px;

@@ -5,10 +5,13 @@ export default function decorate(block) {
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
+    li.className = 'card';
     while (row.firstElementChild) li.append(row.firstElementChild);
-    [...li.children].forEach((div) => {
-      if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
-      else div.className = 'cards-card-body';
+    [...li.children].forEach((div, index) => {
+      if (index === 0) div.className = 'card-image';
+      else if (index === 1) div.className = 'card-content';
+      else if (index === 2) div.className = 'card-links';
+      else div.className = 'card-extra';
     });
     ul.append(li);
   });

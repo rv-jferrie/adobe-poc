@@ -111,7 +111,7 @@ export default async function decorate(block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragment(navPath);
+  const navFragment = await loadFragment(navPath);
 
   // decorate nav DOM
   block.textContent = '';
@@ -119,7 +119,33 @@ export default async function decorate(block) {
   const nav = document.createElement('nav');
   nav.id = 'header-menu';
   nav.className = 'navbar';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  while (navFragment.firstElementChild) nav.append(navFragment.firstElementChild);
+
+  const primaryNavMeta = getMetadata('primary-nav');
+  const primaryNavPath = primaryNavMeta ? new URL(primaryNavMeta, window.location).pathname : '/primary-nav';
+  const primaryNavFragment = await loadFragment(primaryNavPath);
+
+  const primaryNav = document.createElement('nav');
+  primaryNav.id = 'primary-nav';
+  primaryNav.className = 'primary-nav';
+  while (primaryNavFragment.firstElementChild) {
+    primaryNav.append(primaryNavFragment.firstElementChild);
+  }
+
+  primaryNav.querySelector('a').classList.add('active');
+
+  const breadcrumbsMeta = getMetadata('fragments/breadcrumbs');
+  const breadcrumbsPath = breadcrumbsMeta ? new URL(breadcrumbsMeta, window.location).pathname : '/fragments/breadcrumbs';
+  const breadcrumbsFragment = await loadFragment(breadcrumbsPath);
+
+  const breadcrumbs = document.createElement('nav');
+  breadcrumbs.id = 'breadcrumbs';
+  breadcrumbs.className = 'breadcrumbs';
+  while (breadcrumbsFragment.firstElementChild) {
+    breadcrumbs.append(breadcrumbsFragment.firstElementChild);
+  }
+
+  // console.log(primaryNavFragment);
 
   // const classes = ['brand', 'items'];
   // classes.forEach((c, i) => {
@@ -147,8 +173,20 @@ export default async function decorate(block) {
   // toggleMenu(nav, navSections, isDesktop.matches);
   // isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
+  nav.lastElementChild.querySelector('a').classList.add('button');
+
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  const primaryNavWrapper = document.createElement('div');
+  primaryNavWrapper.className = 'primary-nav-wrapper';
+  primaryNavWrapper.append(primaryNav);
+  block.append(primaryNavWrapper);
+
+  const breadcrumbsWrapper = document.createElement('div');
+  breadcrumbsWrapper.className = 'breadcrumbs-wrapper';
+  breadcrumbsWrapper.append(breadcrumbs);
+  block.append(breadcrumbsWrapper);
 }
