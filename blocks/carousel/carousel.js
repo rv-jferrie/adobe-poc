@@ -34,8 +34,6 @@ function showSlide(block, slideIndex = 0) {
 
   activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
 
-  console.log('activeSlide', activeSlide);
-
   block.querySelector('.carousel-slides').scrollTo({
     top: 0,
     left: activeSlide.offsetLeft,
@@ -50,17 +48,14 @@ function bindEvents(block) {
   slideIndicators.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', (e) => {
       const slideIndicator = e.currentTarget.parentElement;
-      console.log('dot', slideIndicator.dataset.targetSlide);
       showSlide(block, parseInt(slideIndicator.dataset.targetSlide, 10));
     });
   });
 
   block.querySelector('.slide-prev').addEventListener('click', () => {
-    console.log('prev');
     showSlide(block, parseInt(block.dataset.activeSlide, 10) - 1);
   });
   block.querySelector('.slide-next').addEventListener('click', () => {
-    console.log('next');
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
   });
 
